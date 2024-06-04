@@ -29,7 +29,7 @@
 {% endblock meta_tags_in_head %}
 
 {% block content %}
-{% from '_includes/_defaults.html' import LANDING_PAGE_TITLE, PROJECTS, PROJECTS_TITLE with context %}
+{% from '_includes/_defaults.html' import LANDING_PAGE_TITLE, PROJECTS with context %}
 
 {% set landing_page = namespace(page=false) %}
 {% for p in hidden_pages if p.slug == "landing-page-about-hidden" %}
@@ -68,18 +68,20 @@
         {% if PROJECTS and LANDING_PAGE_TITLE %}
         {% set css_class = 'span4' %}
         {% endif %}
-        <div class="{{ css_class }}">
-            <header>
-            <h1 id="my-projects">{{ PROJECTS_TITLE }}</h1>
-            </header>
-            {% for project in PROJECTS %}
-            <ul class="list-projects">
-                <li>
-                <a href="{{ project.url }}" title="{{ project.name }}">{{ project.name }}</a> <span class="proj-desc">{{ project.description }}</span>
-                </li>
-            </ul>
-            {% endfor %}
-        </div>
+        {% for project_group in PROJECTS %}
+            <div class="{{ css_class }}">
+                <header>
+                <h1 id="my-projects-{{ loop.index }}">{{ project_group.title }}</h1>
+                </header>
+                {% for project in project_group.lines %}
+                <ul class="list-projects">
+                    <li>
+                    <a href="{{ project.url }}" title="{{ project.name }}">{{ project.name }}</a> <span class="proj-desc">{{ project.description }}</span>
+                    </li>
+                </ul>
+                {% endfor %}
+            </div>
+        {% endfor %}
         {% endif %}
     </div>
 
