@@ -18,6 +18,7 @@ The original README of the project is: [ORIGINAL_README.md](ORIGINAL_README.md)
 
     * variable `PROJECTS` structure has been changed (see [doc in _defaults.html](templates/_includes/_defaults.html#L165-L181))
     * `PROJECTS_TITLE` variable has been dropped
+* footer links to this repository rather than the original project
 
 # License
 
